@@ -32,10 +32,8 @@ const words = [
   "north",
 ];
 
-const randomWord = words[Math.floor(Math.random()*words.length)]; 
-
 //Initializing word
-word.innerText = randomWord;
+word.innerText = words[Math.floor(Math.random()*words.length)];
 
 //Initializing score
 let score = 0;
@@ -43,16 +41,10 @@ let score = 0;
 //Initializing time
 let time = 10;
 
-
-
-
-function addWordToDOM () {
-const addWord = words[Math.floor(Math.random()*words.length)];
-word.innerText = addWord; 
+function addWordToDOM () {; 
+  let addWord = words[Math.floor(Math.random()*words.length)];
+  word.innerText = addWord;
 }
-
-
-
 
 function updateScore () {
 ++score; 
@@ -70,15 +62,11 @@ function updateTime () {
     }
   }
 
-  function gameOver () {
-  document.getElementById("end-game-container").style.display = "block"; 
-  }
-
-
 text.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
+  let userInput = document.querySelector("input").value; 
+  if (e.key === "Enter" && userInput === word.innerText) {
     // call updateScore
-    updateScore(); 
+    updateScore(),
     // give the user a new word by calling addWordToDom
     addWordToDOM();
     // increment time by 5 seconds
@@ -89,4 +77,8 @@ text.addEventListener("keypress", function (e) {
   }
 });
 
-//  if (this.value === randomWord) 
+function gameOver () {
+  document.getElementById("end-game-container").style.display = "block"; 
+  const finalScore = document.getElementById("final-score");
+  finalScore.innerText = `${score}`;
+  }
