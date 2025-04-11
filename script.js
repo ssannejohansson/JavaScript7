@@ -32,8 +32,9 @@ const words = [
   "north",
 ];
 
+const randomWord = words[Math.floor(Math.random()*words.length)]; 
+
 //Initializing word
-let randomWord = words[Math.floor(Math.random()*words.length)]; 
 word.innerText = randomWord;
 
 //Initializing score
@@ -46,8 +47,10 @@ let time = 10;
 
 
 function addWordToDOM () {
-word.innerText = words[Math.floor(Math.random()*words.length)]
+const addWord = words[Math.floor(Math.random()*words.length)];
+word.innerText = addWord; 
 }
+
 
 
 
@@ -72,8 +75,8 @@ function updateTime () {
   }
 
 
-text.addEventListener("keypress", function () {
-  if (this.value == randomWord) {
+text.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
     // call updateScore
     updateScore(); 
     // give the user a new word by calling addWordToDom
@@ -86,3 +89,4 @@ text.addEventListener("keypress", function () {
   }
 });
 
+//  if (this.value === randomWord) 
